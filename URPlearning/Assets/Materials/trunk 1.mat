@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-702917492726028490
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: trunk 1
+  m_Shader: {fileID: 4800000, guid: 6131a8b56aa65a44ab9f3a5f03f5b04d, type: 3}
+  m_ShaderKeywords: _DISPLACEMENTMAP
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: d07b9f3012e95694ea17dd879427c68c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMossMap:
+        m_Texture: {fileID: 2800000, guid: d58f6884904ee1a4eab3960c77432edb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DepthMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: a332dac77ecd20f4f9533040892266dd, type: 3}
+        m_Scale: {x: 0.5, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MossMap:
+        m_Texture: {fileID: 2800000, guid: e1bd5484e3b1c8c428c4b8ca69c2e433, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 8eb3a1758fa9a334ba57f7d9271f3956, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AlphaClip: 0
+    - _AlphaCutout: 0.784
+    - _AlphaTest: 0
+    - _BackSSDistortion: 0.501
+    - _Blend: 0
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DstBlend: 0
+    - _EnableDisplacementMap: 1
+    - _EnableNormalMap: 0
+    - _EnvironmentReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossinessSource: 0
+    - _GlossyReflections: 0
+    - _HeightScale: 4.1
+    - _IntensityGI: 0.409
+    - _Metallic: 0
+    - _MossRoughness: 0.206
+    - _NormalScale: 0.98
+    - _Occlusion: 0.682
+    - _OcclusionStrength: 1
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _RimLightPower: 5
+    - _SSSIntensity: 0.168
+    - _SampleGI: 0
+    - _ShadowSmooth: 0.2
+    - _ShadowThreshold: 0.5
+    - _ShellAmount: 12
+    - _ShellStep: 0.00281
+    - _Shininess: 0.925
+    - _Smoothness: 0.5
+    - _SmoothnessSource: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecSource: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _WrapDiffuse: 0.4
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.7019608, g: 0.7891561, b: 0.84313726, a: 1}
+    - _BaseShadowColor: {r: 0.5043393, g: 0.454, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HSVOffset: {r: 0, g: 46.3, b: -10.7, a: 0}
+    - _MossBaseColor: {r: 0.73755276, g: 0.95, b: 0.849789, a: 1}
+    - _MossHighColor: {r: 0.61956376, g: 0.7607843, b: 0.5934118, a: 1}
+    - _MossShadowColor: {r: 0.90800005, g: 0.7703074, b: 0.57294804, a: 1}
+    - _SSSColor: {r: 0.97419775, g: 0.98039216, b: 0.54901963, a: 1}
+    - _ShadowColor: {r: 0.39607844, g: 0.326519, b: 0.25490198, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

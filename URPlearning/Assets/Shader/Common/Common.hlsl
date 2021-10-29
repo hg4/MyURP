@@ -1,5 +1,7 @@
 #ifndef CUSTOM_COMMON_INCLUDED
 #define CUSTOM_COMMON_INCLUDED
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
+        
 
 half Alpha(half albedoAlpha, half4 color, half cutoff)
 {
@@ -64,4 +66,24 @@ float3 NormalTangentToWorld(float3 normalTS, float3 normalWS, float4 tangentWS)
         CreateTangentToWorld(normalWS, tangentWS.xyz, tangentWS.w);
     return TransformTangentToWorld(normalTS, tangentToWorld);
 }
+
+float3 Rand(float x)
+{
+    float y = frac(sin(x) * 1000.0);
+    return y;
+}
+
+float3 RotateHSV(float3 baseColor, float3 hsvOffset)
+{
+    float3 old_hsv = RgbToHsv(baseColor);
+    float3 new_hsv = old_hsv + hsvOffset;
+    //new_hsv.r = RotateHue(new_hsv.r, 0, 1);
+    //new_hsv.g = RotateHue(new_hsv.g, 0, 1);
+    //new_hsv.b = RotateHue(new_hsv.b, 0, 1);
+    new_hsv = max(float3(0, 0, 0), new_hsv);
+    new_hsv = min(float3(1, 1, 1), new_hsv);
+
+    return HsvToRgb(new_hsv);
+}
+
 #endif
