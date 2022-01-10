@@ -28,13 +28,15 @@ struct SurfaceData
     float3 viewDir;
     float3 position;
     float smoothness;
+    float4 shadowCoord;
     float alpha;
 };
 float4 GetLighting(SurfaceData surface)
 {
-    Light light = GetMainLight();
-    half3 diffuse = LightingLambert(light.color, light.direction, surface.normal);
-    half3 specular = LightingSpecular(light.color, light.direction, surface.normal, surface.viewDir, float4(surface.specColor, 1.0), surface.smoothness);
+    Light light = GetMainLight(surface.shadowCoord); 
+    half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
+    half3 diffuse = LightingLambert(attenuatedLightColor, light.direction, surface.normal);
+    half3 specular = LightingSpecular(attenuatedLightColor, light.direction, surface.normal, surface.viewDir, float4(surface.specColor, 1.0), surface.smoothness);
                 //º∆À„∏Ωº”π‚’’
     uint pixelLightCount = GetAdditionalLightsCount();
     for (uint lightIndex = 0; lightIndex < pixelLightCount; ++lightIndex)
@@ -46,12 +48,7 @@ float4 GetLighting(SurfaceData surface)
     return float4(surface.baseColor * diffuse + specular,surface.alpha);
 }
 
-float3 NormalTangentToWorld(float3 normalTS, float3 normalWS, float4 tangentWS)
-{
-    float3x3 tangentToWorld =
-		CreateTangentToWorld(normalWS, tangentWS.xyz, tangentWS.w);
-    return TransformTangentToWorld(normalTS, tangentToWorld);
-}
+
 
 Varyings LitPhongShaderPassVertex(Attributes input)
 {
@@ -73,7 +70,7 @@ float4 LitPhongShaderPassFragment(Varyings input) : SV_Target
 {
     SurfaceData surface;
     float4 col = GetBaseMap(input.uv) * _BaseColor;
-
+    surface.shadowCoord = TransformWorldToShadowCoord(input.positionWS);
     surface.baseColor = col.rgb;
     surface.specColor = GetSpecularMap(input.uv).rgb * _SpecColor.rgb;
     surface.alpha = col.a;

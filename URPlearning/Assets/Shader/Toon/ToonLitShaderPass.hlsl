@@ -1,5 +1,6 @@
 #ifndef TOON_LIT_SHADER_PASS_INCLUDED
 #define TOON_LIT_SHADER_PASS_INCLUDED
+#include "ToonLighting.hlsl"
 
 struct Attributes
 {
@@ -7,6 +8,7 @@ struct Attributes
     float3 normalOS : NORMAL;
     float4 color : COLOR;
     float2 uv : TEXCOORD0;
+    float2 lightmapUV : TEXCOORD1;
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 struct Varyings
@@ -16,34 +18,11 @@ struct Varyings
     float3 normalWS : VAR_NORMAL;
     float4 color : VAR_COLOR;
     float2 uv : TEXCOORD0;
+    DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 3);
 	UNITY_VERTEX_INPUT_INSTANCE_ID
 };
-struct ToonSurfaceData
-{
-    float3 positionWS;
-    float3 positionVS;
-    float3 positionCS;
-    float2 positionSS;
-    float2 screenUV;
-    float3 normalWS;
-    //float3 computeNormalWS;
-    float3 color;
-    float4 vertexColor;
-    float3 viewDirectionWS;
-    float alpha;
-    float occlusion;
-#ifdef _FACE_LIGHT_MAP
-    float lightmapMask;
-#endif
-#ifdef _AO_LIGHT_MAP
-    float aoMask;
-#endif 
-#ifdef _HIGHLIGHT_MASK
-    float highlightMask;
-#endif
-};
 
-#include "ToonLighting.hlsl"
+
 
 Varyings ToonLitShaderPassVertex(Attributes input)
 {
@@ -57,6 +36,9 @@ Varyings ToonLitShaderPassVertex(Attributes input)
     output.normalWS = TransformObjectToWorldDir(input.normalOS);
     output.color = input.color;
     output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
+    OUTPUT_LIGHTMAP_UV(input.lightmapUV, unity_LightmapST, output.lightmapUV);
+    OUTPUT_SH(output.normalWS.xyz, output.vertexSH);
+
     return output;
 }
 
@@ -71,9 +53,11 @@ float4 ToonLitShaderPassFragment(Varyings input) : SV_Target
     surface.normalWS = input.normalWS;
     float4 albedo= GetBaseMap(input.uv);
     surface.vertexColor = input.color;
-    surface.color = albedo.rgb;
+    surface.baseColor = albedo.rgb;
     surface.alpha = albedo.a;
     surface.occlusion = 1.0;
+    surface.shadowCoord = TransformWorldToShadowCoord(input.positionWS);
+    surface.bakedGI = SAMPLE_GI(input.lightmapUV, input.vertexSH, input.normalWS);
     return GetToonLighting(surface);
 }
 #endif

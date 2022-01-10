@@ -44,6 +44,9 @@
             //shader feature
             #pragma shader_feature _NORMALMAP
 
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+
             #pragma vertex LitPhongShaderPassVertex
             #pragma fragment LitPhongShaderPassFragment
             #include "LitPhongShaderPass.hlsl"
